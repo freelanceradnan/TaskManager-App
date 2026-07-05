@@ -1,0 +1,11 @@
+import mongoose from "mongoose";
+
+const TasksSchema=mongoose.Schema({
+    title:{type:String,trim:true,required:true},
+    description:{type:String,trim:true,required:true},
+    status:{type:String,trim:true,required:true},
+    userId:{type:mongoose.Schema.Types.ObjectId,trim:true,required:true,ref:'users'}
+})
+
+const tasks=mongoose.model('tasks',TasksSchema)
+export const tasks
