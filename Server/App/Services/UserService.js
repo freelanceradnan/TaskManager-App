@@ -89,7 +89,7 @@ export async function VerifyEmail(email) {
     }
     const otp = Math.floor(100000 + Math.random() * 900000);
     isExistingUser.otp = otp;
-    console.log('n')
+    
     await isExistingUser.save();
     const otpsend = await EmailSend({
       email: normalizedEmail,
@@ -104,5 +104,44 @@ export async function VerifyEmail(email) {
     return { success: false, message: `otp send failed ${otp}` };
   }
 }
-export async function VerifyMyOtp() {}
-export async function ChangeMyPassword() {}
+export async function VerifyOtp(email,otp) {
+    const normalizedEmail=email.toLowerCase()
+    try {
+    const isExistingUser=await users.findOne({email:normalizedEmail})
+    if(!isExistingUser){
+    return {success:false,message:"user not find!"}
+    }  
+    const otpMatch=await users.findOne({otp:otp})
+    if(!otpMatch){
+    return {success:false,message:"otp and user not found!"}
+    }
+    return {success:true,message:"otp verify success!"}
+    } catch (error) {
+        return {success:false,message:"otp verify failed!"}
+    }
+}
+export async function ChangePassword(email,otp,password) {
+    const normalizedEmail=email.toLowerCase()
+    try {
+     const isExistingUser=users.findOne({email:normalizedEmail})
+     if(!isExistingUser){
+     return {success:true,message:"email varified success!"}
+     }
+     const matchotp=await users.findOne({email:normalizedEmail,otp:otp})
+     if(!matchotp){
+     return {success:false,message:"otp not match"}
+     }
+     const newPassword=await bcrypt.hash(password,10)
+     await users.updateOne({email:normalizedEmail},
+        {
+            $set:{
+                otp: '0', 
+                    password: newPassword
+            }
+        }
+     )
+     return { success:true,message:"password update success!"}
+    } catch (error) {
+        return { success:false,message:"password update failed!"}
+    }
+}

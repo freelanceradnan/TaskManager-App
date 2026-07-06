@@ -1,6 +1,6 @@
 // registration
 
-import { CreateUser, LoginUser,GetProfile, UpdateProfile, VerifyEmail} from "../Services/UserService.js"
+import { CreateUser, LoginUser,GetProfile, UpdateProfile, VerifyEmail, VerifyOtp, ChangePassword} from "../Services/UserService.js"
 
 export async function MyRegistration(req,res){
     const {email,firstName,lastName,mobile,password}=req.body
@@ -113,17 +113,36 @@ export async function VerifyMyEmail(req,res){
 }
 //verifyotp
 export async function VerifyMyOtp(req,res){
+    const {email,otp}=req.body
     try {
-    res.status(200).json("user verify otp success")
+    if(!email || !otp){
+    return res.status(200).json("email and otp missing ")
+    }
+    const result=await VerifyOtp(email,otp)
+    if(!result.success){
+    return res.status(400).json("otp mitmatch")
+    }
+    res.status(200).json("otp match success!")
 } catch (error) {
     res.status(400).json('user verify otp failed')
 }
 }
 //changePassword
-export async function ChangeMyPassword(req,res){
+export async function ChangeMyPassword(req, res) {
+    const { email, otp, password } = req.body;
+    
     try {
-    res.status(200).json("user changePassword success")
-} catch (error) {
-    res.status(400).json('user changePassword failed')
-}
+        if (!email || !otp || !password) {
+            return res.status(400).json({ message: "Change password fields data missing!" });
+        }
+        const result = await ChangePassword(email, otp, password);
+        if (!result.success) {
+            return res.status(400).json({ message: result.message || "Failed to change password" });
+        }
+        return res.status(200).json({ message: "User password changed successfully!" });
+
+    } catch (error) {
+        console.error("Controller Error:", error);
+        return res.status(500).json({ message: "Internal server error during password change" });
+    }
 }
