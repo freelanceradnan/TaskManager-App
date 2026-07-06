@@ -9,15 +9,16 @@ router.post('/login',UserController.MyLogin)
 //authmiddlewares
 router.get('/getProfile',authMiddleware,UserController.GetMyProfile)
 router.patch('/updateProfile',authMiddleware,UserController.UpdateMyProfile)
+
 router.post('/verify-Email',UserController.VerifyMyEmail)
 router.post('/verify-otp',UserController.VerifyMyOtp)
 router.post('/ChangePassword',UserController.ChangeMyPassword)
 
 //task
-router.post('/createTask',TaskController.CreateMyTask)
+router.post('/createTask',authMiddleware,TaskController.CreateMyTask)
 router.delete('/deleteTask',TaskController.DeleteMyTask)
 router.patch('/updateTask',TaskController.UpdateMyTaskStatus)
-router.get('/getTasks',TaskController.GetMyTasksByStatus)
+router.get('/tasks/:status',authMiddleware, TaskController.GetMyTasksByStatus);
 router.post('/countTask',TaskController.CountMyTasks)
 
 export default router

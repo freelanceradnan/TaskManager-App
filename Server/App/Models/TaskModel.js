@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 const TasksSchema=mongoose.Schema({
     title:{type:String,trim:true,required:true},
     description:{type:String,trim:true,required:true},
-    status:{type:String,trim:true,required:true},
-    userId:{type:mongoose.Schema.Types.ObjectId,trim:true,required:true,ref:'users'}
+    status:{type:String,trim:true,required:true,
+        enum:['processing','pending','completed']
+    },
+    user_id:{type:mongoose.Schema.Types.ObjectId,trim:true,required:true,ref:'users'}
 },
 {
     versionKey:false,
@@ -13,4 +15,4 @@ const TasksSchema=mongoose.Schema({
 )
 
 const tasks=mongoose.model('tasks',TasksSchema)
-export const tasks
+export default tasks
