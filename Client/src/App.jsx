@@ -2,13 +2,16 @@ import { useState } from 'react'
 import Login from './Pages/Login'
 import { Navigate, Route, Routes } from 'react-router'
 import Registration from './Pages/Registration'
+import Dashboard from './Pages/Dashboard'
 
 function App() {
   
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<Dashboard/>}>
+      <Route path="/createTask" element={<h2>adnan</h2>}/>
+      </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/registration" element={<Registration/>}/>
     </Routes>
