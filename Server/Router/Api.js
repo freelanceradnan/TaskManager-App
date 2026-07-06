@@ -8,7 +8,7 @@ router.post('/registration',UserController.MyRegistration)
 router.post('/login',UserController.MyLogin)
 //authmiddlewares
 router.get('/getProfile',authMiddleware,UserController.GetMyProfile)
-router.patch('/updateProfile',UserController.UpdateMyProfile)
+router.patch('/updateProfile',authMiddleware,UserController.UpdateMyProfile)
 router.post('/verify-Email',UserController.VerifyMyEmail)
 router.post('/verify-otp',UserController.VerifyMyOtp)
 router.post('/ChangePassword',UserController.ChangeMyPassword)

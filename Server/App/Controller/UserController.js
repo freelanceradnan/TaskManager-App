@@ -1,6 +1,6 @@
 // registration
 
-import { CreateUser, LoginUser,GetProfile} from "../Services/UserService.js"
+import { CreateUser, LoginUser,GetProfile, UpdateProfile, VerifyEmail} from "../Services/UserService.js"
 
 export async function MyRegistration(req,res){
     const {email,firstName,lastName,mobile,password}=req.body
@@ -77,16 +77,36 @@ export async function GetMyProfile(req,res){
 }
 //profile update
 export async function UpdateMyProfile(req,res){
+    const user_id=req.headers['user_id']
+    const {email,firstName,lastName,mobile,password}=req.body
     try {
-    res.status(200).json("user updateProfile success")
+    if(!user_id){
+    res.status(200).json("userid not found!")
+    }
+    if(!email || !firstName ||!lastName || !mobile ||!password){
+    res.status(200).json("update data missing!")
+    }
+    const result=await UpdateProfile(user_id,email,firstName,lastName,mobile,password)
+    if(!result.success){
+        res.status(400).json({status:'success',message:'user updated failed!'})
+    }
+    res.status(200).json({status:"success",message:'update success'})
 } catch (error) {
     res.status(400).json('user updateProfile failed')
 }
 }
 //verifyEmail
 export async function VerifyMyEmail(req,res){
+    const {email}=req.body
     try {
-    res.status(200).json("user verifyEmail success")
+    if(!email){
+    return res.status(200).json('email not found!')
+    }
+    const result=await VerifyEmail(email)
+    if(!result.success){
+    return res.status(400).json("failed to verify email")
+    }
+    res.status(200).json(result.message)
 } catch (error) {
     res.status(400).json('user verifyEmail failed')
 }

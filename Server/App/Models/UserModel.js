@@ -6,7 +6,7 @@ const userSchema=mongoose.Schema({
     lastName:{type:String,trim:true,required:true},
     mobile:{type:Number,trim:true,required:true},
     password:{type:String,trim:true,required:true},
-    otp:{type:Number,trim:true,default:0}
+    otp:{type:String,trim:true,default:'0'}
 }
 )
 
