@@ -16,9 +16,9 @@ router.post('/ChangePassword',UserController.ChangeMyPassword)
 
 //task
 router.post('/createTask',authMiddleware,TaskController.CreateMyTask)
-router.delete('/deleteTask',TaskController.DeleteMyTask)
-router.patch('/updateTask',TaskController.UpdateMyTaskStatus)
+router.delete('/deleteTask/:id',authMiddleware,TaskController.DeleteMyTask)
+router.patch('/updateTask/:id',authMiddleware,TaskController.UpdateMyTaskStatus)
 router.get('/tasks/:status',authMiddleware, TaskController.GetMyTasksByStatus);
-router.post('/countTask',TaskController.CountMyTasks)
+router.get('/countTask',authMiddleware,TaskController.CountTasks)
 
 export default router
