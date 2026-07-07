@@ -11,9 +11,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Dashboard/>}>
       <Route path="/createTask" element={<h2>adnan</h2>}/>
+      <Route path="/tasks/new" element={<h2>adnan</h2>}/>
+      <Route path="/tasks/progress" element={<h2>adnan</h2>}/>
+      <Route path="/tasks/completed" element={<h2>adnan</h2>}/>
+      <Route path="/tasks/canceled" element={<h2>adnan</h2>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/registration" element={<Registration/>}/>
+      <Route path="/signup" element={<Registration/>}/>
     </Routes>
   )
 }

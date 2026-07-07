@@ -2,21 +2,42 @@
 
 import { CreateUser, LoginUser,GetProfile, UpdateProfile, VerifyEmail, VerifyOtp, ChangePassword} from "../Services/UserService.js"
 
-export async function MyRegistration(req,res){
-    const {email,firstName,lastName,mobile,password}=req.body
+export async function MyRegistration(req, res) {
+    const { email, firstName, lastName, mobile, password } = req.body;
    
-try {
-    if(!email || !firstName || !lastName || !mobile || !password){
-    res.status(400).json("Please enter right details for create account!")
+    try {
+        
+        if (!email || !firstName || !lastName || !mobile || !password) {
+            return res.status(400).json({ 
+                status: 'error', 
+                message: "Please enter right details to create an account!" 
+            });
+        }
+
+       
+        const result = await CreateUser(email, firstName, lastName, mobile, password);
+        
+     
+        if (!result.success) {
+            return res.status(400).json({ 
+                status: 'error', 
+                message: result.message || "User already exists!" 
+            });
+        }
+
+        
+        return res.status(201).json({ 
+            status: 'success', 
+            message: "User registration success" 
+        });
+
+    } catch (error) {
+        console.error("Registration Error: ", error);
+        return res.status(500).json({ 
+            status: 'error', 
+            message: 'User registration failed due to server error' 
+        });
     }
-    const result=await CreateUser(email,firstName,lastName,mobile,password)
-    if(!result.success){
-     return res.status(400).json(result.message)
-    }
-    res.status(201).json({status:'success',message:"user registration success"})
-} catch (error) {
-    res.status(400).json('user registration failed')
-}
 }
 //login
 export async function MyLogin(req, res) {

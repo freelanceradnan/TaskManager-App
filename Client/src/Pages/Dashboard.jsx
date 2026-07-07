@@ -70,7 +70,7 @@ const Dashboard = () => {
                   className={({ isActive }) => `
                     flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition-all duration-200
                     ${isActive 
-                      ? "bg-blue-50 text-blue-600 shadow-sm border border-blue-100/50" 
+                      ? "bg-blue-50 text-blue-600 shadow-sm  " 
                       : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                     }
                   `}

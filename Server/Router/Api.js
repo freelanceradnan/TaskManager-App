@@ -2,10 +2,11 @@ import express from "express";
 import * as UserController from '../App/Controller/UserController.js'
 import * as TaskController from '../App/Controller/TaskController.js'
 import { authMiddleware } from "../App/Middleware/AuthMiddleware.js";
+import { loginValidation, signupValidation } from './../App/Middleware/AuthValidation.js';
 const router=express.Router()
 //user
-router.post('/signup',UserController.MyRegistration)
-router.post('/login',UserController.MyLogin)
+router.post('/signup',signupValidation,UserController.MyRegistration)
+router.post('/login',loginValidation,UserController.MyLogin)
 //authmiddlewares
 router.get('/getProfile',authMiddleware,UserController.GetMyProfile)
 router.patch('/updateProfile',authMiddleware,UserController.UpdateMyProfile)
