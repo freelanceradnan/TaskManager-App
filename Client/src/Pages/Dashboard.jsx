@@ -1,8 +1,11 @@
 import { LayoutDashboard, Menu, PlusCircle, CircleDot, Loader, CheckCircle2, XCircle } from 'lucide-react';
-import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
+  const navigate=useNavigate()
+  const [userData,setUserData]=useState([])
   const [openModal, setOpenModal] = useState(false);
   const [openMenu, setOpenMenu] = useState(true);
   const menuNames = [
@@ -13,7 +16,43 @@ const Dashboard = () => {
     { name: 'Completed', icon: <CheckCircle2 size={18} />, link: "/tasks/completed" },
     { name: 'Canceled', icon: <XCircle size={18} />, link: "/tasks/canceled" }
   ];
+ const HandleLogout=async(e)=>{
+  e.preventDefault()
+  try {
+    setTimeout(() => {
+     localStorage.removeItem('token')
+     toast.success('logout success!')
+     navigate('/login')
+    }, 1000);
+  
+  } catch (error) {
+    toast.error('failed to logout')
+  }
+ }
+ useEffect(()=>{
+ const getData=async()=>{
+  try {
+  const token=localStorage.getItem('token')
+  if(token){
+    const url='http://localhost:3000/api/getProfile'
+    const res=await fetch(url,{
+      method:'GET',
+      headers:{
+        'authorization':token
+      }
+    })
+    const result=await res.json()
+    
+    setUserData(result.message.data)
+  }
+ } catch (error) {
+  toast.error('failed to get user data')
+ }
 
+ }
+  getData()
+ },[])
+ 
   return (
     <div className="min-h-screen bg-[#f9f8f8] flex flex-col font-sans antialiased selection:bg-blue-500 selection:text-white">
       
@@ -42,12 +81,12 @@ const Dashboard = () => {
             <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 text-gray-800 transition-all">
               <div className="px-4 py-2 border-b border-gray-100">
                 <p className="text-sm font-semibold text-gray-900">User Menu</p>
-                <p className="text-xs text-gray-500 truncate">user@example.com</p>
+                <p className="text-xs text-gray-500 truncate">{userData?.email}</p>
               </div>
               <a href="#profile" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors">My Profile</a>
-              <a href="#settings" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors">Settings</a>
+             
               <hr className="my-1 border-gray-100" />
-              <button className="block w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+              <button className="block w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors" onClick={HandleLogout}>
                 Log Out
               </button>
             </div>
