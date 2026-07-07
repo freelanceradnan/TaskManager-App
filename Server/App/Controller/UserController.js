@@ -13,7 +13,7 @@ try {
     if(!result.success){
      return res.status(400).json(result.message)
     }
-    res.status(200).json({status:'success',message:"user registration success"})
+    res.status(201).json({status:'success',message:"user registration success"})
 } catch (error) {
     res.status(400).json('user registration failed')
 }

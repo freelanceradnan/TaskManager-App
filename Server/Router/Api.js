@@ -4,7 +4,7 @@ import * as TaskController from '../App/Controller/TaskController.js'
 import { authMiddleware } from "../App/Middleware/AuthMiddleware.js";
 const router=express.Router()
 //user
-router.post('/registration',UserController.MyRegistration)
+router.post('/signup',UserController.MyRegistration)
 router.post('/login',UserController.MyLogin)
 //authmiddlewares
 router.get('/getProfile',authMiddleware,UserController.GetMyProfile)
