@@ -10,6 +10,7 @@ import NewTasks from './Pages/NewTasks'
 import ProgressTask from './Pages/ProgressTasks'
 import CompletedTask from './Pages/CompletedTasks'
 import CancelTask from './Pages/CancelTasks'
+import Profile from './Pages/Profile'
 
 function App() {
 const [isAuthenticate, setIsAuthenticate] = useState(() => {
@@ -33,6 +34,7 @@ const PrivateRoute = ({ children }) => {
       <Route path="/tasks/progress" element={<ProgressTask/>}/>
       <Route path="/tasks/completed" element={<CompletedTask/>}/>
       <Route path="/tasks/canceled" element={<CancelTask/>}/>
+      <Route path="/Profile" element={<Profile/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Registration/>}/>
