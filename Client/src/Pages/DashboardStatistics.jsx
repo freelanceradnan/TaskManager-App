@@ -29,7 +29,7 @@ const DashboardStatistics = () => {
     return (
         <div>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
-                {data.map((d)=>(
+                {data?.map((d)=>(
                   <div className='shadow-md h-25 rounded-sm p-4 bg-[#FFFFFF]' key={d._id}>
                     <h2 className='text-2xl uppercase'>{d._id}</h2>
                     <h2>{d.sum}</h2>

@@ -6,6 +6,10 @@ import Dashboard from './Pages/Dashboard'
 import RefreshToken from './Components/RefreshToken'
 import DashboardStatistics from './Pages/DashboardStatistics'
 import TaskCreate from './Pages/TaskCreate'
+import NewTasks from './Pages/NewTasks'
+import ProgressTask from './Pages/ProgressTasks'
+import CompletedTask from './Pages/CompletedTasks'
+import CancelTask from './Pages/CancelTasks'
 
 function App() {
 const [isAuthenticate, setIsAuthenticate] = useState(() => {
@@ -25,10 +29,10 @@ const PrivateRoute = ({ children }) => {
       }>
         <Route path="/" element={<DashboardStatistics/>}/>
       <Route path="/createTask" element={<TaskCreate/>}/>
-      <Route path="/tasks/new" element={<h2>adnan</h2>}/>
-      <Route path="/tasks/progress" element={<h2>adnan</h2>}/>
-      <Route path="/tasks/completed" element={<h2>adnan</h2>}/>
-      <Route path="/tasks/canceled" element={<h2>adnan</h2>}/>
+      <Route path="/tasks/new" element={<NewTasks/>}/>
+      <Route path="/tasks/progress" element={<ProgressTask/>}/>
+      <Route path="/tasks/completed" element={<CompletedTask/>}/>
+      <Route path="/tasks/canceled" element={<CancelTask/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Registration/>}/>
