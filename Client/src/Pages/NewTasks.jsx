@@ -1,4 +1,4 @@
-import { Pen } from 'lucide-react';
+import { Delete, Pen, Trash } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -26,6 +26,33 @@ const NewTasks = () => {
     }
     getData()
     },[])
+    const deleteHandler=async(id)=>{
+      
+      try {
+        const token=localStorage.getItem('token')
+        if(!token){
+        return toast.error('token not found!')
+        }
+       const url=`http://localhost:3000/api/deleteTask/${id}`
+       const response=await fetch(url,{
+        method:'DELETE',
+        headers:{
+          'Content-Type':'application/json',
+          'authorization':token
+        }
+       })
+       const result=await response.json()
+       if(result){
+        toast.success('task deleted success!')
+        setData((prevTasks) => prevTasks.filter((task) => task._id !== id));
+       }
+       else{
+        toast.error('failed to delete task')
+       }
+      } catch (error) {
+        
+      }
+    }
     return (
         <div>
            
@@ -48,9 +75,14 @@ const NewTasks = () => {
     
     <div className='flex gap-1.5 items-center text-xs text-gray-400'>
       <span>{new Date(d.createdAt).toLocaleDateString()}</span>
-      <button className='hover:text-blue-500 transition-colors' title="Edit Task">
-        <Pen size={12}/>
+      <div className='flex gap-2'>
+        <button className='hover:text-blue-500 transition-colors text-red-500' title="Edit Task">
+        <Pen size={15}/>
       </button>
+      <button className='hover:text-blue-500 transition-colors text-red-500' title="Edit Task" onClick={()=>deleteHandler(d._id)}>
+        <Trash  size={15}/>
+      </button>
+      </div>
     </div>
     
 
