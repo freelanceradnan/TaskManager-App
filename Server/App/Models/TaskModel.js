@@ -4,7 +4,7 @@ const TasksSchema=mongoose.Schema({
     title:{type:String,trim:true,required:true},
     description:{type:String,trim:true,required:true},
     status:{type:String,trim:true,required:true,
-        enum:['processing','pending','completed']
+        enum:['new','progress','completed','cancel']
     },
     user_id:{type:mongoose.Schema.Types.ObjectId,trim:true,required:true,ref:'users'}
 },

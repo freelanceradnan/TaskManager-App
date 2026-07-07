@@ -4,6 +4,8 @@ import { Navigate, Route, Routes } from 'react-router'
 import Registration from './Pages/Registration'
 import Dashboard from './Pages/Dashboard'
 import RefreshToken from './Components/RefreshToken'
+import DashboardStatistics from './Pages/DashboardStatistics'
+import TaskCreate from './Pages/TaskCreate'
 
 function App() {
 const [isAuthenticate, setIsAuthenticate] = useState(() => {
@@ -21,7 +23,8 @@ const PrivateRoute = ({ children }) => {
           <Dashboard/>
         </PrivateRoute>
       }>
-      <Route path="/createTask" element={<h2>adnan</h2>}/>
+        <Route path="/" element={<DashboardStatistics/>}/>
+      <Route path="/createTask" element={<TaskCreate/>}/>
       <Route path="/tasks/new" element={<h2>adnan</h2>}/>
       <Route path="/tasks/progress" element={<h2>adnan</h2>}/>
       <Route path="/tasks/completed" element={<h2>adnan</h2>}/>
