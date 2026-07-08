@@ -99,11 +99,12 @@ const Dashboard = () => {
         
         {/* --- SIDEBAR --- */}
         {openMenu && (
-          <aside className="w-64 bg-white border-r border-gray-100 flex flex-col justify-between py-6 px-4 h-[calc(100vh-64px)] shrink-0 shadow-sm transition-all duration-300">
+          <aside className="w-64 bg-white border-r border-gray-100 flex flex-col justify-between py-6 px-4 h-[calc(100vh-64px)] shrink-0 shadow-sm transition-all duration-300 absolute left-0 md:static ">
             <div className="flex flex-col space-y-1.5">
               {menuNames.map((menu, index) => (
                 <NavLink 
                   key={index}
+                  onClick={()=>setOpenMenu(false)}
                   to={menu.link}
                   end={menu.link === "/"}
                   className={({ isActive }) => `

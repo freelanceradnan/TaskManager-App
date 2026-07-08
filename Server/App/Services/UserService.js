@@ -101,9 +101,9 @@ export async function VerifyEmail(email) {
     if (!otpsend.success) {
       return { success: false, message: "failed to send otp" };
     }
-    return { success: true, message: `otp send success ${otp}` };
+    return { success: true, message: `otp send success` };
   } catch (error) {
-    return { success: false, message: `otp send failed ${otp}` };
+    return { success: false, message: `otp send failed ` };
   }
 }
 export async function VerifyOtp(email,otp) {

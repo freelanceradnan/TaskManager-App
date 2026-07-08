@@ -121,13 +121,13 @@ export async function VerifyMyEmail(req,res){
     const {email}=req.body
     try {
     if(!email){
-    return res.status(200).json('email not found!')
+    return res.status(200).json({success:false,message:"email not found!"})
     }
     const result=await VerifyEmail(email)
     if(!result.success){
-    return res.status(400).json("failed to verify email")
+    return res.status(400).json({success:false,message:"failed to verify email"})
     }
-    res.status(200).json(result.message)
+    res.status(200).json({success:true,message:"Otp sended into email!"})
 } catch (error) {
     res.status(400).json('user verifyEmail failed')
 }
@@ -137,15 +137,15 @@ export async function VerifyMyOtp(req,res){
     const {email,otp}=req.body
     try {
     if(!email || !otp){
-    return res.status(200).json("email and otp missing ")
+    return res.status(200).json({success:false,message:"email and otp missing "})
     }
     const result=await VerifyOtp(email,otp)
     if(!result.success){
-    return res.status(400).json("otp mitmatch")
+    return res.status(400).json({success:false,message:"otp missing "})
     }
-    res.status(200).json("otp match success!")
+    res.status(200).json({success:true,message:"otp verify success!"})
 } catch (error) {
-    res.status(400).json('user verify otp failed')
+    res.status(400).json({success:false,message:"email and otp missing"})
 }
 }
 //changePassword
@@ -154,16 +154,16 @@ export async function ChangeMyPassword(req, res) {
     
     try {
         if (!email || !otp || !password) {
-            return res.status(400).json({ message: "Change password fields data missing!" });
+            return res.status(400).json({ success:true,message: "Change password fields data missing!" });
         }
         const result = await ChangePassword(email, otp, password);
         if (!result.success) {
-            return res.status(400).json({ message: result.message || "Failed to change password" });
+            return res.status(400).json({ success:false,message: result.message || "Failed to change password" });
         }
-        return res.status(200).json({ message: "User password changed successfully!" });
+        return res.status(200).json({  success:true,message: "User password changed successfully!" });
 
     } catch (error) {
         console.error("Controller Error:", error);
-        return res.status(500).json({ message: "Internal server error during password change" });
+        return res.status(500).json({ success:false, message: "Internal server error during password change" });
     }
 }

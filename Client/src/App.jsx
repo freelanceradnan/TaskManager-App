@@ -11,6 +11,9 @@ import ProgressTask from './Pages/ProgressTasks'
 import CompletedTask from './Pages/CompletedTasks'
 import CancelTask from './Pages/CancelTasks'
 import Profile from './Pages/Profile'
+import Sentotp from './Pages/Sentotp'
+import Otpverify from './Pages/Otpverify'
+import ChangePassword from './Pages/ChangePassword'
 
 function App() {
 const [isAuthenticate, setIsAuthenticate] = useState(() => {
@@ -37,6 +40,9 @@ const PrivateRoute = ({ children }) => {
       <Route path="/Profile" element={<Profile/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/sentOtp" element={<Sentotp/>}/>
+      <Route path="/otpverify" element={<Otpverify/>}/>
+      <Route path="/changepassword" element={<ChangePassword/>}/>
       <Route path="/signup" element={<Registration/>}/>
     </Routes>
    </>

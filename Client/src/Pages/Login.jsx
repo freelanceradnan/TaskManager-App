@@ -95,7 +95,7 @@ const Login = () => {
             Sign In
           </button>{" "}
           |
-          <button type="button" className="text-[#344767] text-sm font-bold">
+          <button type="button" className="text-[#344767] text-sm font-bold" onClick={()=>navigate('/sentOtp')}>
             Forgot Password?
           </button>
         </div>
