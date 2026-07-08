@@ -8,8 +8,10 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     mobile: "",
-    password: "",
+    password:""
   });
+
+  
   const changeHandler=(e)=>{
     const {name,value}=e.target
     setEditData((prev=>({
@@ -195,7 +197,7 @@ const Profile = () => {
                 type="password"
                 name="password"
                 onChange={changeHandler}
-                value={editData?.password}
+                value={editData.password}
                 placeholder="Mobile number"
                 className="p-2.5 bg-gray-50 border border-gray-400 rounded-lg text-gray-700 text-sm focus:outline-none cursor-not-allowed"
               />

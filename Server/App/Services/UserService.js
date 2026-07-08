@@ -33,7 +33,8 @@ export async function LoginUser(email, password) {
   if (!isExistingUser) {
     throw new Error("Invalid credentials");
   }
-  const passwordMatch = await bcrypt.compare(password, isExistingUser.password);
+// Correct order  
+const passwordMatch = await bcrypt.compare(password, isExistingUser.password);
   if (!passwordMatch) {
     throw new Error("Invalid credentials");
   }
@@ -68,9 +69,10 @@ export async function UpdateProfile(
   password,
 ) {
   try {
+    const passHash=await bcrypt.hash(password,10)
     const result = await users.updateOne(
       { _id: user_id },
-      { email, firstName, lastName, mobile, password },
+      { email, firstName, lastName, mobile, password:passHash },
     );
     if (!result) {
       return { success: false, message: "user update failed" };
