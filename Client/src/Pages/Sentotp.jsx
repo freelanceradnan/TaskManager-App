@@ -22,9 +22,9 @@ const Sentotp = () => {
     const result=await response.json()
      
     if(result.success===true){
-        toast.success(result)
+        toast.success('Email otp sent!')
         setTimeout(() => {
-         navigate('/otpverify',{state:{email:email}})
+        navigate('/otpverify', { state: { email: email } });
         }, 1000);
     }else {
         setEmail("")

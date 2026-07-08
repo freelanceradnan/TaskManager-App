@@ -98,7 +98,7 @@ const NewTasks = () => {
 };
     return (
         <div>
-           
+           <h2 className='text-2xl font-semibold uppercase py-2'>New Tasks</h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {data?.map((d)=>(
                 <div key={d._id} className='rounded-lg bg-white shadow-md border border-gray-100 flex flex-col p-4 justify-between gap-3 hover:shadow-lg transition-shadow'>

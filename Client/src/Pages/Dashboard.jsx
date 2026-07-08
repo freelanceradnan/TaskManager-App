@@ -8,6 +8,22 @@ const Dashboard = () => {
   const [userData,setUserData]=useState([])
   const [openModal, setOpenModal] = useState(false);
   const [openMenu, setOpenMenu] = useState(true);
+  const [isMd,setIsMd]=useState(false)
+
+  useEffect(() => {
+  const mediaQuery = window.matchMedia('(max-width: 720px)');
+  setIsMd(mediaQuery.matches);
+
+  const handleMediaQueryChange = (event) => {
+    setIsMd(event.matches);
+  };
+
+  mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+  return () => {
+    mediaQuery.removeEventListener('change', handleMediaQueryChange);
+  };
+}, []); 
   const menuNames = [
     { name: 'Dashboard', icon: <LayoutDashboard size={18} />, link: "/" },
     { name: 'Create New', icon: <PlusCircle size={18} />, link: "/createTask" },
@@ -104,7 +120,7 @@ const Dashboard = () => {
               {menuNames.map((menu, index) => (
                 <NavLink 
                   key={index}
-                  onClick={()=>setOpenMenu(false)}
+                  onClick={isMd?()=>setOpenMenu(false):''}
                   to={menu.link}
                   end={menu.link === "/"}
                   className={({ isActive }) => `
