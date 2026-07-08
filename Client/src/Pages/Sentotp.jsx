@@ -12,7 +12,7 @@ const Sentotp = () => {
     if(!email){
     return toast.error('please inter a email')
     }
-    const url='http://localhost:3000/api/verify-Email'
+    const url='https://task-manager-app-beige-chi.vercel.app/api/verify-Email'
     const response=await fetch(url,{
         method:'POST',
         headers:{

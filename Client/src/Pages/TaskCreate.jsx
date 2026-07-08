@@ -26,7 +26,7 @@ const TaskCreate = () => {
         if(!token){
             return toast.error('token not found!')
         }
-        const url='http://localhost:3000/api/createTask'
+        const url='https://task-manager-app-beige-chi.vercel.app/api/createTask'
         const response=await fetch(url,{
             method:'POST',
             headers:{

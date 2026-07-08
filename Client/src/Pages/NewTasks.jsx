@@ -16,7 +16,7 @@ const NewTasks = () => {
           if(!token){
             toast.success('token not found')
           }
-          const url='http://localhost:3000/api/tasks/new'
+          const url='https://task-manager-app-beige-chi.vercel.app/api/tasks/new'
           const response=await fetch(url,{
             method:'GET',
             headers:{
@@ -38,7 +38,7 @@ const NewTasks = () => {
         if(!token){
         return toast.error('token not found!')
         }
-       const url=`http://localhost:3000/api/deleteTask/${id}`
+       const url=`https://task-manager-app-beige-chi.vercel.app/api/deleteTask/${id}`
        const response=await fetch(url,{
         method:'DELETE',
         headers:{
@@ -68,7 +68,7 @@ const NewTasks = () => {
     }
     
     
-    const url = `http://localhost:3000/api/updateTask/${editId}`; 
+    const url = `https://task-manager-app-beige-chi.vercel.app/api/updateTask/${editId}`; 
     
     const response = await fetch(url, {
       method: 'PATCH',

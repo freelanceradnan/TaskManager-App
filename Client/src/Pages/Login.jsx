@@ -18,7 +18,7 @@ const Login = () => {
   const LoginHandler=async(e)=>{
     e.preventDefault()
    try {
-    const url='http://localhost:3000/api/login'
+    const url='https://task-manager-app-beige-chi.vercel.app/api/login'
     const response=await fetch(url,{
       method:'POST',
       headers:{

@@ -27,7 +27,7 @@ const Profile = () => {
         if (!token) {
           return toast.error("token not found!");
         }
-        const url = "http://localhost:3000/api/getProfile";
+        const url = "https://task-manager-app-beige-chi.vercel.app/api/getProfile";
         const response = await fetch(url, {
           method: "GET",
           headers: {
@@ -53,7 +53,7 @@ const Profile = () => {
     if(!token){
       return toast.error('token not found!')
     }
-    const url='http://localhost:3000/api/updateProfile'
+    const url='https://task-manager-app-beige-chi.vercel.app/api/updateProfile'
     const response=await fetch(url,{
       method:'PATCH',
       headers:{

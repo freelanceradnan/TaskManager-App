@@ -50,7 +50,7 @@ const Dashboard = () => {
   try {
   const token=localStorage.getItem('token')
   if(token){
-    const url='http://localhost:3000/api/getProfile'
+    const url='https://task-manager-app-beige-chi.vercel.app/api/getProfile'
     const res=await fetch(url,{
       method:'GET',
       headers:{

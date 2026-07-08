@@ -10,7 +10,7 @@ const DashboardStatistics = () => {
             if(!token){
             return toast.error('token not found!')
             }
-            const url='http://localhost:3000/api/countTask'
+            const url='https://task-manager-app-beige-chi.vercel.app/api/countTask'
             const response=await fetch(url,{
             method:'GET',
             headers:{
