@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 const TaskCreate = () => {
+  const navigate=useNavigate()
     const [taskInfo,setTaskInfo]=useState({
         title:"",
         description:"",
@@ -35,6 +37,7 @@ const TaskCreate = () => {
         })
       const result=await response.json()
       if(result){
+        navigate('/')
         toast.success(result)
       }
     } catch (error) {

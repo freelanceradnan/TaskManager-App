@@ -41,11 +41,12 @@ try {
      return {success:false,message:"task deleted failed"}
 }
 }
-export async function UpdateTask(task_id,user_id,title,description,status){
+export async function UpdateTask(task_id,title,description,status){
+
    
 try {
     
-     const result=await tasks.updateOne({_id:task_id,user_id:user_id},{
+     const result=await tasks.updateOne({_id:task_id},{
         $set:{
             title,
             description,

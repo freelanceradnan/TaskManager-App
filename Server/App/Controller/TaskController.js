@@ -52,16 +52,12 @@ export async function UpdateMyTaskStatus(req, res) {
   const task_id = req.params.id;
   const {title,description,status}=req.body
   try {
-    if (!user_id) {
-      return res.status(400).json("user not found!");
-    }
+    
     if (!task_id) {
       return res.status(200).json("tasks id not found!");
     }
-    if(!title || !description || !status){
-       return res.status(200).json("title,description,status not found!"); 
-    }
-    const result=await UpdateTask(task_id,user_id,title,description,status)
+    
+    const result=await UpdateTask(task_id,title,description,status)
     if(!result.success){
     return res.status(400).json("tasks not updated")
     }

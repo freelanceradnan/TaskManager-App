@@ -83,7 +83,7 @@ const Dashboard = () => {
                 <p className="text-sm font-semibold text-gray-900">User Menu</p>
                 <p className="text-xs text-gray-500 truncate">{userData?.email}</p>
               </div>
-              <Link to="/Profile" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors">My Profile</Link>
+              <Link to="/Profile" className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors" onClick={()=>setOpenModal(false)}>My Profile</Link>
              
               <hr className="my-1 border-gray-100" />
               <button className="block w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors" onClick={HandleLogout}>
