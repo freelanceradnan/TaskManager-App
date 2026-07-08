@@ -16,7 +16,7 @@ const NewTasks = () => {
           if(!token){
             toast.success('token not found')
           }
-          const url='https://task-manager-app-beige-chi.vercel.app/api/tasks/progress'
+          const url='https://task-manager-app-pi-ruby.vercel.app/api/tasks/progress'
           const response=await fetch(url,{
             method:'GET',
             headers:{
@@ -38,7 +38,7 @@ const NewTasks = () => {
         if(!token){
         return toast.error('token not found!')
         }
-       const url=`https://task-manager-app-beige-chi.vercel.app/api/deleteTask/${id}`
+       const url=`https://task-manager-app-pi-ruby.vercel.app/api/deleteTask/${id}`
        const response=await fetch(url,{
         method:'DELETE',
         headers:{
