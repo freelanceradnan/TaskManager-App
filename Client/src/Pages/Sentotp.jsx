@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 const Sentotp = () => {
     const [email,setEmail]=useState("")
     const navigate=useNavigate()
+    //otp sender
     const otpsender=async(e)=>{
     e.preventDefault()
     try {
