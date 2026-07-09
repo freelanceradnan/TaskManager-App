@@ -4,3 +4,6 @@ export const WEB_CACHED=false
 export const MAX_REQUEST_TIME=5*60*60*1000
 export const MAX_REQUST_NUMBER=3000
 export const PORT=3000
+export const MongodbUrls='mongodb+srv://newone:0iZv7vsldTT07lZ7@cluster0.pukutr0.mongodb.net/taskmanager?appName=Cluster0'
+export const JWT_SECRET='ABC12345'
+export const JWT_EXPIRATION='24h'

@@ -4,7 +4,7 @@ import helmet from 'helmet'
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import hpp from 'hpp'
-import { MAX_JSON_SIZE, MAX_REQUEST_TIME, MAX_REQUST_NUMBER, PORT } from './App/Config/Config.js'
+import { MAX_JSON_SIZE, MAX_REQUEST_TIME, MAX_REQUST_NUMBER, MongodbUrls, PORT } from './App/Config/Config.js'
 import router from './Router/Api.js'
 import mongoose from 'mongoose'
 
@@ -24,7 +24,7 @@ const limiter=rateLimit({
 app.use(limiter)
 
 //connection db
-mongoose.connect(process.env.MONGODB_STR,{autoIndex:true})
+mongoose.connect(MongodbUrls,{autoIndex:true})
 .then(()=>{
     console.log('mongodb connection success!')
 })
