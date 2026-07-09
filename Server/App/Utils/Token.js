@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
-
+//token encode
 export const TokenEncorde = (email, user_id) => {
     try {
         const jwt_token = process.env.JWT_SECRET
@@ -14,7 +14,7 @@ export const TokenEncorde = (email, user_id) => {
         return { error: { message: error.message } }
     }
 }
-
+//token decode
 export const TokenDecorde = (token) => {
     try {
         const jwt_token = process.env.JWT_SECRET
