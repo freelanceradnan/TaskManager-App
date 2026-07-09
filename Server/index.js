@@ -4,9 +4,11 @@ import helmet from 'helmet'
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import hpp from 'hpp'
-import { MAX_JSON_SIZE, MAX_REQUEST_TIME, MAX_REQUST_NUMBER, MongodbUrls, PORT } from './App/Config/Config.js'
+import { MAX_JSON_SIZE, MAX_REQUEST_TIME, MAX_REQUST_NUMBER, PORT } from './App/Config/Config.js'
 import router from './Router/Api.js'
 import mongoose from 'mongoose'
+import { connectDB } from './App/Config/ConnetionDb.js'
+
 
 //initialization
 const app=express()
@@ -22,15 +24,9 @@ const limiter=rateLimit({
     message:"max request from this ip"
 })
 app.use(limiter)
-
+app.set('etag',false)
 //connection db
-mongoose.connect(MongodbUrls,{autoIndex:true})
-.then(()=>{
-    console.log('mongodb connection success!')
-})
-.catch(()=>{
-    console.log('mongodb connection error!')
-})
+connectDB()
 
 //connect router
 app.use('/api',router)
