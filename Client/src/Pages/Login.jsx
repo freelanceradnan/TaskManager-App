@@ -18,7 +18,7 @@ const Login = () => {
   const LoginHandler=async(e)=>{
     e.preventDefault()
    try {
-    const url='https://task-manager-app-sigma-ruby.vercel.app/api/login'
+    const url='https://task-manager-app-smoky-seven.vercel.app/api/login'
     const response=await fetch(url,{
       method:'POST',
       headers:{

@@ -23,7 +23,7 @@ const Registration = () => {
  const submitRegister = async (e) => {
     e.preventDefault();
     try {
-        const url = 'https://task-manager-app-sigma-ruby.vercel.app/api/signup';
+        const url = 'https://task-manager-app-smoky-seven.vercel.app/api/signup';
         const response = await fetch(url, {
             method: 'POST',
             headers: {

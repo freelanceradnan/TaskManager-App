@@ -17,7 +17,7 @@ const ChangePassword = () => {
         return toast.error("enter a valid password!")
       }
       
-      const url='https://task-manager-app-sigma-ruby.vercel.app/api/ChangePassword'
+      const url='https://task-manager-app-smoky-seven.vercel.app/api/ChangePassword'
       const response=await fetch(url,{
         method:'POST',
         headers:{

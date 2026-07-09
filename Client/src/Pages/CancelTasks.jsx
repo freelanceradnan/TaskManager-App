@@ -16,7 +16,7 @@ const NewTasks = () => {
           if(!token){
             toast.success('token not found')
           }
-          const url='https://task-manager-app-sigma-ruby.vercel.app/api/tasks/cancel'
+          const url='https://task-manager-app-smoky-seven.vercel.app/api/tasks/cancel'
           const response=await fetch(url,{
             method:'GET',
             headers:{
@@ -38,7 +38,7 @@ const NewTasks = () => {
         if(!token){
         return toast.error('token not found!')
         }
-       const url=`https://task-manager-app-sigma-ruby.vercel.app/api/deleteTask/${id}`
+       const url=`https://task-manager-app-smoky-seven.vercel.app/api/deleteTask/${id}`
        const response=await fetch(url,{
         method:'DELETE',
         headers:{
@@ -68,7 +68,7 @@ const NewTasks = () => {
     }
     
     
-    const url = `https://task-manager-app-sigma-ruby.vercel.app/api/${editId}`; 
+    const url = `https://task-manager-app-smoky-seven.vercel.app/api/${editId}`; 
     
     const response = await fetch(url, {
       method: 'PATCH',

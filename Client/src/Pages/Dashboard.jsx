@@ -50,7 +50,7 @@ const Dashboard = () => {
   try {
   const token=localStorage.getItem('token')
   if(token){
-    const url='https://task-manager-app-sigma-ruby.vercel.app/api/getProfile'
+    const url='https://task-manager-app-smoky-seven.vercel.app/api/getProfile'
     const res=await fetch(url,{
       method:'GET',
       headers:{

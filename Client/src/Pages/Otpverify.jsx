@@ -40,7 +40,7 @@ if (enteredOtp.length < 6) {
     return toast.error('Enter 6 digits code!')
 }
 
-const url='https://task-manager-app-sigma-ruby.vercel.app/api/verify-otp'
+const url='https://task-manager-app-smoky-seven.vercel.app/api/verify-otp'
 const response=await fetch(url,{
     method:'POST',
     headers:{
