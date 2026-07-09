@@ -1,20 +1,25 @@
 import 'dotenv/config'
 import jwt from 'jsonwebtoken'
-import { JWT_EXPIRATION, JWT_SECRET } from '../Config/Config.js'
-export const TokenEncorde=(email,user_id)=>{
-try {
-    
-    const JWT_EXPIRATION={expiresIn:JWT_EXPIRATION}
-    const PAYLOAD={'email':email,'user_id':user_id}
-    return jwt.sign(PAYLOAD,JWT_SECRET,JWT_EXPIRATION)
-} catch (error) {
-    return {error:{message:error.message}}
-}
-}
-export const TokenDecorde=(token)=>{
+
+export const TokenEncorde = (email, user_id) => {
     try {
-    return jwt.verify(token,JWT_SECRET)
+        const jwt_token = process.env.JWT_SECRET
+        const jwt_expires = process.env.JWT_EXPIRATION || '24h'
+        
+        const PAYLOAD = { 'email': email, 'user_id': user_id }
+        const OPTIONS = { expiresIn: jwt_expires } 
+        return jwt.sign(PAYLOAD, jwt_token, OPTIONS) 
+        
     } catch (error) {
-        return {error:{message:error.message}}
+        return { error: { message: error.message } }
+    }
+}
+
+export const TokenDecorde = (token) => {
+    try {
+        const jwt_token = process.env.JWT_SECRET
+        return jwt.verify(token, jwt_token)
+    } catch (error) {
+        return { error: { message: error.message } }
     }
 }
